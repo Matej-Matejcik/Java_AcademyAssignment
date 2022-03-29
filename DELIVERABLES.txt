@@ -6,7 +6,7 @@
    List of all articles (GET http://localhost:8080/articles) should NOT include comments.
    Returning single article details (GET http://localhost:8080/articles/{articleId}) should include list of comments that belongs to article
 
-   Create API for creating, deleting and reading comments, comments cannot exist without article assigned
+                         Create API for creating, deleting and reading comments, comments cannot exist without article assigned
 
 3. We need a way to ingest large number of articles at once from a file. 
 

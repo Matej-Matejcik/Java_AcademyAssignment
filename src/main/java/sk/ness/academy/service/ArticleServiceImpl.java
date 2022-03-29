@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import sk.ness.academy.dao.ArticleDAO;
 import sk.ness.academy.domain.Article;
+import sk.ness.academy.domain.Comment;
+import sk.ness.academy.dto.ArticleWithoutComments;
 
 @Service
 @Transactional
@@ -23,7 +25,7 @@ public class ArticleServiceImpl implements ArticleService {
   }
 
   @Override
-  public List<Article> findAll() {
+  public List<ArticleWithoutComments> findAll() {
 	  return this.articleDAO.findAll();
   }
 
@@ -34,7 +36,7 @@ public class ArticleServiceImpl implements ArticleService {
 
   @Override
   public void createArticle(final Article article) {
-	  this.articleDAO.persist(article);
+    this.articleDAO.persist(article);
   }
 
   @Override
@@ -42,4 +44,8 @@ public class ArticleServiceImpl implements ArticleService {
     throw new UnsupportedOperationException("Article ingesting not implemented.");
   }
 
+  @Override
+  public void addCommentToArticle(Comment comment, Integer articleId) {
+      this.articleDAO.addCommentToArticle(comment,articleId);
+  }
 }
