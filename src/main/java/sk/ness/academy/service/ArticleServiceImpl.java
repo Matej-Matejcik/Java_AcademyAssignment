@@ -28,6 +28,11 @@ public class ArticleServiceImpl implements ArticleService {
   }
 
   @Override
+  public void deleteByID(Integer articleId) {
+    this.articleDAO.deleteByID(articleId);
+  }
+
+  @Override
   public void createArticle(final Article article) {
 	  this.articleDAO.persist(article);
   }

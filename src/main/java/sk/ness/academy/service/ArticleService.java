@@ -12,6 +12,9 @@ public interface ArticleService {
 	  /** Returns all available {@link Article}s */
 	  List<Article> findAll();
 
+	  /** Deletes {@link Article} by ID */
+	  void deleteByID(Integer articleId);
+
 	  /** Creates new {@link Article} */
 	  void createArticle(Article article);
 

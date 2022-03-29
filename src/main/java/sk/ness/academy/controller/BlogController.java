@@ -41,6 +41,11 @@ public class BlogController {
 	  throw new UnsupportedOperationException("Full text search not implemented.");
   }
 
+  @RequestMapping(value = "articles/{articleId}", method = RequestMethod.DELETE)
+  public void deleteArticle(@PathVariable final Integer articleId) {
+      this.articleService.deleteByID(articleId);
+  }
+
   @RequestMapping(value = "articles", method = RequestMethod.PUT)
   public void addArticle(@RequestBody final Article article) {
 	  this.articleService.createArticle(article);
