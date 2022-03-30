@@ -22,4 +22,8 @@ public class CommentHibernateDAO implements CommentDAO{
         this.sessionFactory.getCurrentSession().saveOrUpdate(comment);
     }
 
+    @Override
+    public void deleteComment(Integer commentID) {
+        this.sessionFactory.getCurrentSession().delete(findByID(commentID));
+    }
 }

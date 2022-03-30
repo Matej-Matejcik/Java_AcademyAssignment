@@ -24,4 +24,8 @@ public class CommentServiceImpl implements CommentService{
         this.commentDAO.createComment(comment);
     }
 
+    @Override
+    public void deleteComment(Integer commentID) {
+        this.commentDAO.deleteComment(commentID);
+    }
 }

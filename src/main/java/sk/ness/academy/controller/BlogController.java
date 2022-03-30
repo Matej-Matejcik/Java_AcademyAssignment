@@ -78,8 +78,9 @@ public class BlogController {
     this.commentService.createComment(comment);
   }
 
-  @RequestMapping(value = "comments/{articleId}", method = RequestMethod.DELETE)
-  public void removeComment(@PathVariable final Integer articleId, @RequestBody final Comment comment) {
+  @RequestMapping(value = "comments/{commentId}", method = RequestMethod.DELETE)
+  public void removeComment(@PathVariable final Integer commentId) {
+      this.commentService.deleteComment(commentId);
   }
 
 }

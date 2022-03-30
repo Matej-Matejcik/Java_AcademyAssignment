@@ -10,4 +10,6 @@ public interface CommentDAO {
     /** Creates new {@link Comment} */
     void createComment(Comment comment);
 
+    /** Delete comment with provided ID */
+    void deleteComment(Integer commentID);
 }
