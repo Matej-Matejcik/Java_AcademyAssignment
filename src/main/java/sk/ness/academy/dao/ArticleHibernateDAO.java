@@ -21,7 +21,7 @@ public class ArticleHibernateDAO implements ArticleDAO {
 
   @Override
   public Article findByID(final Integer articleId) {
-    Article article = (Article) this.sessionFactory.getCurrentSession().get(Article.class, articleId);
+    Article article = this.sessionFactory.getCurrentSession().get(Article.class, articleId);
     Hibernate.initialize(article.getComments());
     return article;
   }
