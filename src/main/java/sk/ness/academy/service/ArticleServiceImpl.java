@@ -10,6 +10,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.json.GsonJsonParser;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import sk.ness.academy.dao.ArticleDAO;

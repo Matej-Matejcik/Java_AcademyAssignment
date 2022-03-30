@@ -2,6 +2,7 @@ package sk.ness.academy.dao;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import sk.ness.academy.domain.Article;
 import sk.ness.academy.domain.Comment;
 import sk.ness.academy.dto.ArticleWithoutComments;

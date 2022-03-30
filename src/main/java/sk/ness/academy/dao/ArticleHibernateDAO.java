@@ -7,11 +7,13 @@ import javax.annotation.Resource;
 
 import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
 import sk.ness.academy.domain.Article;
-import sk.ness.academy.domain.Comment;
 import sk.ness.academy.dto.ArticleWithoutComments;
+import sk.ness.academy.exception.ApiRequestException;
 
 @Repository
 public class ArticleHibernateDAO implements ArticleDAO {
@@ -22,6 +24,7 @@ public class ArticleHibernateDAO implements ArticleDAO {
   @Override
   public Article findByID(final Integer articleId) {
     Article article = this.sessionFactory.getCurrentSession().get(Article.class, articleId);
+    if (article == null) throw new ApiRequestException("Article with id " + articleId + " do not exists.",HttpStatus.NOT_FOUND);
     Hibernate.initialize(article.getComments());
     return article;
   }
@@ -29,7 +32,7 @@ public class ArticleHibernateDAO implements ArticleDAO {
   @SuppressWarnings("unchecked")
   @Override
   public List<ArticleWithoutComments> findAll() {
-    return this.sessionFactory.getCurrentSession().createQuery("select new sk.ness.academy.dto.ArticleWithoutComments(id, title, text, author, createTimestamp) from Article ", ArticleWithoutComments.class).list();
+      return this.sessionFactory.getCurrentSession().createQuery("select new sk.ness.academy.dto.ArticleWithoutComments(id, title, text, author, createTimestamp) from Article ", ArticleWithoutComments.class).list();
   }
 
   @Override
