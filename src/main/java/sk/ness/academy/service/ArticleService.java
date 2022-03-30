@@ -23,6 +23,6 @@ public interface ArticleService {
 	  /** Creates new {@link Article}s by ingesting all articles from json */
 	  void ingestArticles(String jsonArticles);
 
-	  void addCommentToArticle(Comment comment, Integer articleId);
-
-	}
+	  /** Search and return {@link ArticleWithoutComments}s that contains {@param searchText} */
+      List<ArticleWithoutComments> searchArticle(String searchText);
+}

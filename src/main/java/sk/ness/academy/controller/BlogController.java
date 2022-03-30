@@ -43,8 +43,8 @@ public class BlogController {
   }
 
   @RequestMapping(value = "articles/search/{searchText}", method = RequestMethod.GET)
-  public List<Article> searchArticle(@PathVariable final String searchText) {
-    throw new UnsupportedOperationException("Full text search not implemented.");
+  public List<ArticleWithoutComments> searchArticle(@PathVariable final String searchText) {
+    return this.articleService.searchArticle(searchText);
   }
 
   @RequestMapping(value = "articles/{articleId}", method = RequestMethod.DELETE)
@@ -54,6 +54,7 @@ public class BlogController {
   public void addArticle(@RequestBody final Article article) {
 	  this.articleService.createArticle(article);
   }
+
 
   // ~~ Author
   @RequestMapping(value = "authors", method = RequestMethod.GET)

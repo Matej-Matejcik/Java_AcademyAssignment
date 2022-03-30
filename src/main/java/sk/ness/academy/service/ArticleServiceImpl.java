@@ -45,7 +45,7 @@ public class ArticleServiceImpl implements ArticleService {
   }
 
   @Override
-  public void addCommentToArticle(Comment comment, Integer articleId) {
-      this.articleDAO.addCommentToArticle(comment,articleId);
+  public List<ArticleWithoutComments> searchArticle(String searchText) {
+    return articleDAO.searchArticle(searchText);
   }
 }

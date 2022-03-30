@@ -20,5 +20,6 @@ public interface ArticleDAO {
 	  /** Persists {@link Article} into the DB */
 	  void persist(Article article);
 
-	  void addCommentToArticle(Comment comment, Integer articleId);
+	/** Search and return {@link ArticleWithoutComments}s that contains {@param searchText} */
+	List<ArticleWithoutComments> searchArticle(String searchText);
 }

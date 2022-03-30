@@ -1,6 +1,7 @@
 package sk.ness.academy.dao;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
 
@@ -42,7 +43,9 @@ public class ArticleHibernateDAO implements ArticleDAO {
   }
 
   @Override
-  public void addCommentToArticle(Comment comment, Integer articleId) {
-      findByID(articleId).getComments().add(comment);
+  public List<ArticleWithoutComments> searchArticle(String searchText) {
+    return findAll().stream()
+            .filter(a -> a.getAuthor().contains(searchText) || a.getText().contains(searchText) || a.getTitle().contains(searchText))
+            .collect(Collectors.toList());
   }
 }
