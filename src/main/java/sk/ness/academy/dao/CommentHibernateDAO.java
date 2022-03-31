@@ -17,8 +17,6 @@ public class CommentHibernateDAO implements CommentDAO{
 
     @Override
     public Comment findByID(Integer commentID) {
-        Comment comment = this.sessionFactory.getCurrentSession().get(Comment.class, commentID);
-        if (comment == null) throw new ApiRequestException("Comment with id " + commentID + " do not exists.", HttpStatus.NOT_FOUND);
         return this.sessionFactory.getCurrentSession().get(Comment.class, commentID);
     }
 

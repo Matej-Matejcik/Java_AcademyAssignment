@@ -24,7 +24,6 @@ public class ArticleHibernateDAO implements ArticleDAO {
   @Override
   public Article findByID(final Integer articleId) {
     Article article = this.sessionFactory.getCurrentSession().get(Article.class, articleId);
-    if (article == null) throw new ApiRequestException("Article with id " + articleId + " do not exists.",HttpStatus.NOT_FOUND);
     Hibernate.initialize(article.getComments());
     return article;
   }

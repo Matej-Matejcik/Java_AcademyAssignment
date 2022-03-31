@@ -43,7 +43,11 @@ public class BlogController {
 
   @RequestMapping(value = "articles/{articleId}", method = RequestMethod.GET)
   public Article getArticle(@PathVariable final Integer articleId) {
-	  return this.articleService.findByID(articleId);
+    try {
+      return this.articleService.findByID(articleId);
+    } catch (NullPointerException e) {
+      throw new ApiRequestException("Article with id " + articleId + " do not exists.",HttpStatus.NOT_FOUND);
+    }
   }
 
   @RequestMapping(value = "articles/search/{searchText}", method = RequestMethod.GET)
@@ -53,7 +57,11 @@ public class BlogController {
 
   @RequestMapping(value = "articles/{articleId}", method = RequestMethod.DELETE)
   public void deleteArticle(@PathVariable final Integer articleId) {
-    this.articleService.deleteByID(articleId);
+    try {
+      this.articleService.deleteByID(articleId);
+    } catch (NullPointerException e) {
+      throw new ApiRequestException("Article with id " + articleId + " do not exists.",HttpStatus.NOT_FOUND);
+    }
   }
 
   @RequestMapping(value = "articles", method = RequestMethod.PUT)
@@ -79,7 +87,11 @@ public class BlogController {
 
   @RequestMapping(value = "comments/{commentId}", method = RequestMethod.GET)
   public Comment getComment(@PathVariable final Integer commentId) {
-    return this.commentService.findByID(commentId);
+    try {
+      return this.commentService.findByID(commentId);
+    } catch (NullPointerException e) {
+      throw new ApiRequestException("Comment with id " + commentId + " do not exists.",HttpStatus.NOT_FOUND);
+    }
   }
 
   @RequestMapping(value = "comments", method = RequestMethod.PUT)
@@ -91,7 +103,11 @@ public class BlogController {
 
   @RequestMapping(value = "comments/{commentId}", method = RequestMethod.DELETE)
   public void removeComment(@PathVariable final Integer commentId) {
+    try {
       this.commentService.deleteComment(commentId);
+    } catch (NullPointerException e) {
+      throw new ApiRequestException("Comment with id " + commentId + " do not exists.",HttpStatus.NOT_FOUND);
+    }
   }
 
   // ~~ Others
